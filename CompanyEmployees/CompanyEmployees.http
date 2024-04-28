@@ -1,6 +1,6 @@
 @CompanyEmployees_HostAddress = http://localhost:5252
 
-GET {{CompanyEmployees_HostAddress}}/weatherforecast/
+GET {{CompanyEmployees_HostAddress}}/api/
 Accept: application/json
 
 ###

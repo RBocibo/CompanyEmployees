@@ -1,9 +1,10 @@
-﻿using Contracts;
-using Entities;
+﻿
+
+using Contracts;
 
 namespace Repository
 {
-    public class CompanyRepository : RepositoryBase<Company>, ICompanyRepository
+    public class CompanyRepository : RepositoryBase<Entities.Company>, ICompanyRepository
     {
         public CompanyRepository(RepositoryContext context) : base(context)
         {

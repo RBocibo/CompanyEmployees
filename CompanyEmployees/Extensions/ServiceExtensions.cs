@@ -1,6 +1,9 @@
 ﻿using Contracts;
+using Entities;
 using LoggerService;
 using Repository;
+using Services.ServiceInterfaces;
+using Services.Services;
 
 namespace CompanyEmployees.Extensions
 {
@@ -34,7 +37,11 @@ namespace CompanyEmployees.Extensions
 
         public static void ConfigureRepositoryManager(this IServiceCollection services)
         {
-            services.AddScoped<IRepositoryManager, RepositoryManager>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<ICompanySerivce, CompanyService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }
 }

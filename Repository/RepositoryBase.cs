@@ -29,14 +29,14 @@ namespace Repository
             _dbSet.RemoveRange(toBeRemoved);
         }
 
-        public async Task<IQueryable<T>> GetAllAsync(Expression<Func<T, bool>> expression)
+        public async Task<List<T>> GetAllAsync()
         {
-            return _dbSet.Where(expression);
+            return await _dbSet.ToListAsync();
         }
 
-        public async Task<IQueryable<T>> GetByExpressionAsync(Expression<Func<T, bool>> expression)
+        public async Task<List<T>> GetByExpressionAsync(Expression<Func<T, bool>> expression)
         {
-            return _dbSet.Where(expression);
+            return await _dbSet.Where(expression).ToListAsync();
         }
 
         public async Task<T> UpdateAsync(T entity)
