@@ -1,6 +1,7 @@
 ﻿
 using Contracts;
 using Services.ServiceInterfaces;
+using Shared.DataTransferObjects;
 
 namespace Services.Services
 {
@@ -15,12 +16,14 @@ namespace Services.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<List<Entities.Company>> GetAllCompanies()
+        public async Task<List<CompanyDTO>> GetAllCompanies()
         {
             var companies = await _companyRepository.GetAllAsync();
-            _unitOfWork.Commit();
 
-            return companies;
+            var companyDTOs = companies.Select(x =>
+            new CompanyDTO(x.Id, x.Name, string.Join(' ', x.Address, x.Country))).ToList();
+
+            return companyDTOs;
         }
     }
 }
