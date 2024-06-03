@@ -9,5 +9,6 @@ namespace Contracts
         void DeleteAsync(Expression<Func<T, bool>> expression);
         Task<List<T>> GetAllAsync();
         Task<List<T>> GetByExpressionAsync(Expression<Func<T, bool>> expression);
+        Task<T> GetByIdExpressionAsync(Expression<Func<T, bool>> expression);
     }
 }
