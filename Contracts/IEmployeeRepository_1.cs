@@ -2,7 +2,7 @@
 
 namespace Contracts
 {
-    public interface IRepositoryBase<T> where T : class
+    public interface IEmployeeRepository<T> where T : class
     {
         Task<T> CreateAsync(T entity);
         Task<T> UpdateAsync(T entity);

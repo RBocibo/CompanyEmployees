@@ -1,6 +1,6 @@
 ﻿namespace Contracts
 {
-    public interface ICompanyRepository : IRepositoryBase<Entities.Company>
+    public interface ICompanyRepository : IEmployeeRepository<Entities.Company>
     {
     }
 }

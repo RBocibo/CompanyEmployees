@@ -23,15 +23,16 @@ namespace CompanyEmployees.Extensions
                     {
                         context.Response.StatusCode = contextFeature.Error switch 
                         { 
-                            NotFoundException => StatusCodes.Status404NotFound, _ => StatusCodes.Status500InternalServerError 
+                            NotFoundException => StatusCodes.Status404NotFound, 
+                            _ => StatusCodes.Status500InternalServerError 
                         };
 
-                        logger.LogError($"Something went wrong: {contextFeature.Error}");
+                        logger.LogError($"Something went wrong: {contextFeature.Error.InnerException}");
 
                         await context.Response.WriteAsync(new ErrorDetails()
                         {
                             StatusCode = context.Response.StatusCode,
-                            Message = contextFeature.Error.Message
+                            Message = contextFeature.Error.InnerException.Message
                         }.ToString());
                     }
                 });
