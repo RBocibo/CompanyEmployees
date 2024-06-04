@@ -8,5 +8,6 @@ namespace Services.ServiceInterfaces
     {
         Task<List<CompanyDTO>> GetAllCompanies();
         Task<CompanyDTO> GetCompanyById(Guid id);
+        Task<CompanyDTO> CreateCompany(CreateCompanyDTO company);
     }
 }

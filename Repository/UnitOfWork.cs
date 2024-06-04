@@ -11,9 +11,9 @@ namespace Contracts
             _repositoryContext = repositoryContext;
         }
 
-        public void Commit()
+        public Task CommitAsync()
         {
-            _repositoryContext.SaveChangesAsync();
+            return _repositoryContext.SaveChangesAsync();
         }
     }
 }

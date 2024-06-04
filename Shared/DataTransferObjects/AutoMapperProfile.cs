@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities;
+using Shared;
 using Shared.DataTransferObjects;
 
 namespace CompanyEmployees
@@ -13,6 +14,8 @@ namespace CompanyEmployees
                 .MapFrom(x => string.Join(' ', x.Address, x.Country)));
 
             CreateMap<Employee, EmployeesDTO>();
+            CreateMap<CreateCompanyDTO, Company>();
+            CreateMap<CreateEmployeeDTO, Employee>();
         }
     }
 }

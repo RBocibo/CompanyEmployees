@@ -1,6 +1,7 @@
 ﻿using Entities.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Services.ServiceInterfaces;
+using Shared.DataTransferObjects;
 
 namespace CompanyEmployees.Controllers
 {
@@ -30,6 +31,14 @@ namespace CompanyEmployees.Controllers
             }
             var company = await _companySerivce.GetCompanyById(id);
             return Ok(company);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateCompany([FromBody] CreateCompanyDTO createCompanyDTO)
+        {
+            var createCompany = await _companySerivce.CreateCompany(createCompanyDTO);
+            return Ok(createCompany);
+
         }
     }
 }

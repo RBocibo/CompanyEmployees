@@ -1,6 +1,7 @@
 ﻿using Entities.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Services.ServiceInterfaces;
+using Shared;
 
 namespace CompanyEmployees.Controllers
 {
@@ -23,7 +24,7 @@ namespace CompanyEmployees.Controllers
             return Ok(employees);
         }
 
-        [HttpGet("company/{companyId:Guid}")]
+        [HttpGet("{companyId:Guid}")]
         public async Task<IActionResult> GetAllEmployeesByCompanyId(Guid companyId)
         {
             if (companyId == Guid.Empty)
@@ -44,6 +45,14 @@ namespace CompanyEmployees.Controllers
 
             var employee = await _employeeService.GetSingleEmployeeForCompany(companyId, employeeId, CancellationToken.None);
             return Ok(employee);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateEmployee([FromBody] CreateEmployeeDTO createEmployee)
+        {
+            var employee = await _employeeService.CreateEmployee(createEmployee);
+            
+            return StatusCode(StatusCodes.Status201Created, employee);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿
 using AutoMapper;
 using Contracts;
+using Entities;
 using Entities.Exceptions;
 using Services.ServiceInterfaces;
 using Shared.DataTransferObjects;
@@ -18,6 +19,18 @@ namespace Services.Services
             _companyRepository = companyRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+        }
+
+        public async Task<CompanyDTO> CreateCompany(CreateCompanyDTO company)
+        {
+            company = new CreateCompanyDTO(company.Name, company.Address, company.Country);
+
+            var mappedCompany = _mapper.Map<Company>(company);
+            await _companyRepository.CreateAsync(mappedCompany);
+            await _unitOfWork.CommitAsync();
+
+            var companyToReturn = _mapper.Map<CompanyDTO>(mappedCompany);
+            return companyToReturn;
         }
 
         public async Task<List<CompanyDTO>> GetAllCompanies()

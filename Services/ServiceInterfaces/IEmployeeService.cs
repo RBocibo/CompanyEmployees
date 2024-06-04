@@ -1,4 +1,5 @@
-﻿using Shared.DataTransferObjects;
+﻿using Shared;
+using Shared.DataTransferObjects;
 
 namespace Services.ServiceInterfaces
 {
@@ -7,5 +8,6 @@ namespace Services.ServiceInterfaces
         Task<IEnumerable<EmployeesDTO>> GetAllEmployeesAsync(CancellationToken cancellationToken);
         Task<IEnumerable<EmployeesDTO>> GetAllEmployeesByCompanyId(Guid companyId, CancellationToken cancellationToken);
         Task<EmployeesDTO> GetSingleEmployeeForCompany(Guid companyId, Guid employeeId, CancellationToken cancellationToken);
+        Task<EmployeesDTO> CreateEmployee(CreateEmployeeDTO createEmployee);
     }
 }
