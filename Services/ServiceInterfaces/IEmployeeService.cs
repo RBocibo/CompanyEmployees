@@ -9,5 +9,6 @@ namespace Services.ServiceInterfaces
         Task<IEnumerable<EmployeesDTO>> GetAllEmployeesByCompanyId(Guid companyId, CancellationToken cancellationToken);
         Task<EmployeesDTO> GetSingleEmployeeForCompany(Guid companyId, Guid employeeId, CancellationToken cancellationToken);
         Task<EmployeesDTO> CreateEmployee(CreateEmployeeDTO createEmployee);
+        Task DeleteEmployee(Guid companyId, Guid employeeId);
     }
 }

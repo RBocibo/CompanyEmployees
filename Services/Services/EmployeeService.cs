@@ -45,6 +45,19 @@ namespace Services.Services
             return employeeToReturn;
         }
 
+        public async Task DeleteEmployee(Guid companyId, Guid employeeId)
+        {
+            var getCompany = await _companyRepository.GetByIdExpressionAsync(x => x.Id == companyId);
+
+            if(getCompany == null)
+            {
+                throw new CompanyNotFoundException(companyId);
+            }
+
+            _employeeRepository.DeleteAsync(x => x.Id == employeeId && x.CompanyId == getCompany.Id);
+            await _unitOfWork.CommitAsync();
+        }
+
         public async Task<IEnumerable<EmployeesDTO>> GetAllEmployeesAsync(CancellationToken cancellationToken)
         {
             var getEmployees = await _employeeRepository.GetAllAsync();

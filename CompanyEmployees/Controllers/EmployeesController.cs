@@ -54,5 +54,12 @@ namespace CompanyEmployees.Controllers
             
             return StatusCode(StatusCodes.Status201Created, employee);
         }
+
+        [HttpDelete("Removed/{companyId}/{employeeId}")]
+        public async Task<IActionResult> RemoveEmployee(Guid companyId, Guid employeeId)
+        {
+            var toDelete = _employeeService.DeleteEmployee(companyId, employeeId);
+            return StatusCode(StatusCodes.Status200OK, toDelete);
+        }
     }
 }
